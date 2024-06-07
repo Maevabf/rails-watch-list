@@ -1,0 +1,22 @@
+<%= @list.name %>
+
+<% @list.bookmarks.each do |bookmark|%>
+  <%= bookmark.movie.title %>
+  <%= bookmark.comment %>
+  <%= link_to "Supprimer ce commentaire", bookmark_path(bookmark), data: {turbo_method: :delete} %>
+<% end %>
+
+<!-- lists/:id/bookmarks -->
+<!-- /bookmarks -->
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :movie_id, collection: Movie.all %>
+  <%= f.button :submit %>
+<% end %>
+
+<div>
+<img src=" https://i.pinimg.com/564x/ef/70/38/ef7038b96cc8f0b3a4b815a35196765a.jpg ">
+</div>
+
+
+<%= link_to "Toutes les listes", lists_path %>
